@@ -1,51 +1,112 @@
-import turtle
+# with open('./Day 25/weather_data.csv', 'r+') as data_file:
+#    data = data_file.readlines()
+#    print(data)
+
+# import csv
+
+# with open('./Day 25/weather_data.csv', 'r+') as data_file:
+#    data = csv.reader(data_file)
+#    temperatures = []
+
+#    for row in data:
+#        temperature = (row[1])
+#        if temperature != 'temp':
+#            temperatures.append(int(temperature))
+
+#    print(temperatures)
+
 import pandas
 
-screen = turtle.Screen()
-screen.title('U.S. States Game')
-image = "blank_states_img.gif"
-screen.addshape(image)
-pen = turtle.Turtle()
-pen.hideturtle()
-turtle.shape(image)
-states = pandas.read_csv('50_states.csv')
-states_list = states.state.to_list()
-#xcord_list = states.x.to_list()
-#ycord_list = states.y.to_list()
-states = states.to_dict()
-print(states)
-#coords_list = [states.x,states.y]
-#print(xcord_list)
-print(states_list)
+data = pandas.read_csv('./Day 25/weather_data.csv')
+#print(data['temp'])
+data_dict = data.to_dict()
+print(data_dict)
 
-count = 0
+#temp_list = data['temp'].to_list()
+#print(temp_list)
 
-guesses = []
+""" Finding the average of a series/column """
 
-state_index = 0
+"""Method 1"""
+# total = 0
 
-while count != 50:
+# for temp in temp_list:
+#    total += temp
 
-    answer_state = screen.textinput(title=f"{count}/50 States Correct", prompt="What's another states name?")
-    #print(answer_state)
+# average = total/len(temp_list)
+# print(average)
 
-    for state in states_list:
-        if answer_state.lower() == state.lower():
-            count+= 1
-            state_index = states_list.index(state)
-            #print(state_index)
-            state_xcor = states['x'][state_index]
-            state_ycor = states['y'][state_index]
-            pen.pu()
-            pen.setpos(state_xcor, state_ycor)
-            pen.pd()
-            pen.write(state,font=('Arial', 12, 'normal'))
-            #print(state_xcor,state_ycor)
+
+"""Method 2"""
+# average = sum(temp_list)/len(temp_list)
+# print(average)
+
+
+"""Method 3"""
+#print(data['temp'].mean())
+
+##print(data['temp'].max())
+
+# Get data in a Column
+#print(data['condition'])
+#print(data.condition)
+
+# Get data in a Row
+# print(data[data.day == 'Monday'])
+
+#print(data[data.temp == data.temp.max()])
+
+#monday = data[data.day == 'Monday']
+
+#print(monday.temp)
+
+#monday_temp = monday.temp
+
+#monday_temp_F = (9/5 * int(monday_temp)) + 32
+
+#print(monday_temp_F)
+
+# Create a dataframe from scratch
+
+# data_dict = {
+#    'students':["Amy","James","Angela"],
+#    'scores': [76, 56, 45]
+#}
+#dataframe = pandas.DataFrame(data_dict)
+
+#print(dataframe)
+
+#dataframe.to_csv('new_data.csv')
+
+#data = pandas.read_csv('./Day 25/Central_Park_Squirrel_Census.csv')
+
+#fur_colour = data['Primary Fur Color']
+
+#black_count = 0
+
+#gray_count = 0
+
+#cinnamon_count = 0
+
+#for colour in fur_colour:
+
+    #if colour == 'Black':
+        #black_count += 1
     
-    guesses.append(answer_state)
-        
+    #if colour == 'Gray':
+        #gray_count += 1
 
-    
+    #if colour == 'Cinnamon':
+        #cinnamon_count += 1
+
+#print(black_count,gray_count,cinnamon_count)
 
 
-screen.exitonclick()
+#data_dict = {
+    #'Fur Colour': ['Grey','Red','Black'],
+    #'Count': [gray_count,cinnamon_count,black_count]
+#}
+
+#data_new =  pandas.DataFrame(data_dict)
+
+#data_new.to_csv('fur_colour.csv')
